@@ -1,0 +1,26 @@
+html,body {
+	width:100%;
+	height:100%;
+	margin: 0;
+	padding: 0;
+}
+.head{
+padding: 5px;
+position: relative;
+height: 66px;
+background-color: #84daff;
+}
+.head>.title{
+position: absolute; 
+width: 380px; 
+left: 40px;
+}
+.head>.title>div.text{
+position: absolute; top: 10px; left: 80px; font-weight: bold; font-family: 'Microsoft YaHei';
+}
+.head>.title>div.text>span{font-size: 22px;}
+.head>.title>div.text_en{
+position: absolute; bottom: 2px; left: 80px;
+}
+.head>.title>div.text_en>span{font-size: 14px;}
+.head>.account{position: absolute; right: 0; bottom: 5px;}
