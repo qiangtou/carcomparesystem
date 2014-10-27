@@ -28,7 +28,7 @@ public class CarDaoTest extends BaseTest {
 	public void testFindCarByCarQuery() {
 		CarQuery c = new CarQuery();
 		c.setOpenType((short) 1);
-		Pager p = carDao.findCar(c);
+		Pager p = carDao.findCar(c, 1, 10);
 		Assert.notEmpty(p.getRows());
 	}
 

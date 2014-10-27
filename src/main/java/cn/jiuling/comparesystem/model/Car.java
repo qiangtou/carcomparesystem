@@ -16,6 +16,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 /**
  * Car entity. @author MyEclipse Persistence Tools
  */
@@ -76,7 +78,7 @@ public class Car implements java.io.Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
+    @JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "seriesId")
 	public Series getSeries() {
@@ -167,7 +169,7 @@ public class Car implements java.io.Serializable {
 	public void setExtendProperty(String extendProperty) {
 		this.extendProperty = extendProperty;
 	}
-
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "car")
 	public Set<Carpic> getCarpics() {
 		return this.carpics;

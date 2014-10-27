@@ -67,8 +67,8 @@ public class CarServiceImpl implements CarService {
 	}
 
 	@Override
-	public List findCarType(CarQuery c) {
-		Pager p = carDao.findCar(c);
-		return null;
+	public Pager findCarType(CarQuery c, Integer page, Integer size) {
+		Pager p = carDao.findCar(c, page, size);
+		return p;
 	}
 }

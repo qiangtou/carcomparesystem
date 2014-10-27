@@ -7,11 +7,13 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.jiuling.comparesystem.service.CarService;
 import cn.jiuling.comparesystem.vo.CarQuery;
 import cn.jiuling.comparesystem.vo.CarVo;
+import cn.jiuling.comparesystem.vo.Pager;
 
 @Controller
 @RequestMapping("/car")
@@ -34,9 +36,11 @@ public class CarController extends BaseController {
 
 	@RequestMapping("query.action")
 	@ResponseBody
-	public List query(CarQuery c) {
-		List list = carService.findCarType(c);
-		return list;
+	public Pager query(CarQuery c,
+			@RequestParam(defaultValue="1") Integer page,
+			@RequestParam(defaultValue="10")Integer size) {
+		Pager p = carService.findCarType(c, page, size);
+		return p;
 	}
 
 }

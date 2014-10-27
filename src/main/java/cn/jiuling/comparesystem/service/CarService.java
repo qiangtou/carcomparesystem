@@ -4,11 +4,12 @@ import java.util.List;
 
 import cn.jiuling.comparesystem.vo.CarQuery;
 import cn.jiuling.comparesystem.vo.CarVo;
+import cn.jiuling.comparesystem.vo.Pager;
 
 public interface CarService {
 	public List<CarVo> findCarType(Integer seriesId);
 
 	public String findCarData();
 
-	public List findCarType(CarQuery c);
+	public Pager findCarType(CarQuery c, Integer page, Integer size);
 }

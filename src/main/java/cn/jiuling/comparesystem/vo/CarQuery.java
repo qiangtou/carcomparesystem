@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 public class CarQuery {
 	private Short structure;
-	private Short seatNum;
-	private Short sideDoorNum;
+	private Integer seatNum;
+	private Integer sideDoorNum;
 	private Short openType;
 	private Short[] level;
 
@@ -17,19 +17,19 @@ public class CarQuery {
 		this.structure = structure;
 	}
 
-	public Short getSeatNum() {
+	public Integer getSeatNum() {
 		return seatNum;
 	}
 
-	public void setSeatNum(Short seatNum) {
+	public void setSeatNum(Integer seatNum) {
 		this.seatNum = seatNum;
 	}
 
-	public Short getSideDoorNum() {
+	public Integer getSideDoorNum() {
 		return sideDoorNum;
 	}
 
-	public void setSideDoorNum(Short sideDoorNum) {
+	public void setSideDoorNum(Integer sideDoorNum) {
 		this.sideDoorNum = sideDoorNum;
 	}
 

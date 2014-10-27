@@ -188,7 +188,7 @@
 			<properties>
 				<db.url>localhost\:3306</db.url>
 				<db.user>root</db.user>
-				<db.pw>root</db.pw>
+				<db.pw>123</db.pw>
 				<db.name>carcomparesystem</db.name>
 				<log4j.rootLogger>info,myconsole</log4j.rootLogger>
 				<hbm2ddl.auto>none</hbm2ddl.auto>

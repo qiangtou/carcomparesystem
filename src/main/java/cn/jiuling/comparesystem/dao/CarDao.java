@@ -11,6 +11,6 @@ public interface CarDao extends BaseDao<Car> {
 
 	public List<CarVo> findCar(Integer seriesId);
 
-	public Pager findCar(CarQuery c);
+	public Pager findCar(CarQuery c, Integer page, Integer size);
 
 }

@@ -1,5 +1,6 @@
 package cn.jiuling.comparesystem.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -22,35 +23,40 @@ public class CarDaoImpl extends BaseDaoImpl<Car> implements CarDao {
 	}
 
 	@Override
-	public Pager findCar(CarQuery c) {
-		StringBuilder wQuery = new StringBuilder();
+	public Pager findCar(CarQuery c, Integer page, Integer size) {
+		StringBuilder hql = new StringBuilder("from Car where 1=1");
+		List param=new ArrayList();
 		Short[] level = c.getLevel();
 		if (level != null && level.length > 0) {
-			wQuery.append(" and level in(");
+			hql.append(" and level in(");
 			for (int i = 0; i < level.length; i++) {
-				wQuery.append(level[i] + ",");
+				hql.append(level[i] + ",");
 			}
-			wQuery.deleteCharAt(wQuery.length() - 1).append(")");
+			hql.deleteCharAt(hql.length() - 1).append(")");
 		}
 		Short openType = c.getOpenType();
 		if (null != openType && openType > 0) {
-			wQuery.append(" and openType =" + openType);
+			hql.append(" and openType =?");
+			param.add(openType);
 		}
-		Short seatNum = c.getSeatNum();
+		Integer seatNum = c.getSeatNum();
 		if (null != seatNum && seatNum > 0) {
-			wQuery.append(" and seatNum =" + seatNum);
+			hql.append(" and seatNum =?");
+			param.add(seatNum);
 		}
-		Short sideDoorNum = c.getSideDoorNum();
+		Integer sideDoorNum = c.getSideDoorNum();
 		if (null != sideDoorNum && sideDoorNum > 0) {
-			wQuery.append(" and sideDoorNum =" + sideDoorNum);
+			hql.append(" and sideDoorNum =?");
+			param.add(sideDoorNum);
 		}
 		Short structure = c.getStructure();
 		if (null != structure && structure > 0) {
-			wQuery.append(" and structure =" + structure);
+			hql.append(" and structure =?");
+			param.add(structure);
 		}
-		Long total = count("select count(*) from Car where 1=1" + wQuery.toString());
-		List list = super.getHibernateTemplate().find("from Car where 1=1" + wQuery.toString());
-		Pager p = new Pager(total, list);
-		return p;
+		Object[] paramArr = param.toArray();
+		Long total = count("select count(*) " + hql.toString(),paramArr);
+		List list =find(hql.toString(), paramArr, page, size);
+		return new Pager(total, list);
 	}
 }
