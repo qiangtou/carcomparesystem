@@ -14,6 +14,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.stereotype.Service;
 
 import cn.jiuling.comparesystem.dao.CarDao;
+import cn.jiuling.comparesystem.dao.CarpicDao;
 import cn.jiuling.comparesystem.dao.SeriesDao;
 import cn.jiuling.comparesystem.service.CarService;
 import cn.jiuling.comparesystem.vo.BrandVo;
@@ -28,6 +29,8 @@ public class CarServiceImpl implements CarService {
 	private CarDao carDao;
 	@Resource
 	private SeriesDao seriesDao;
+	@Resource
+	private CarpicDao carpicDao;
 
 	@Override
 	public List<CarVo> findCarType(Integer seriesId) {
@@ -70,5 +73,10 @@ public class CarServiceImpl implements CarService {
 	public Pager findCarType(CarQuery c, Integer page, Integer size) {
 		Pager p = carDao.findCar(c, page, size);
 		return p;
+	}
+
+	@Override
+	public List findPic(Integer carTypeId) {
+		return carpicDao.findPic(carTypeId);
 	}
 }

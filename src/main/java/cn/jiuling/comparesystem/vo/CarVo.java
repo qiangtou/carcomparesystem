@@ -2,6 +2,7 @@ package cn.jiuling.comparesystem.vo;
 
 public class CarVo {
 	private Integer seriesId;
+	private Integer id;
 	private String name;
 	private Integer year;
 	private Integer price;
@@ -38,16 +39,25 @@ public class CarVo {
 		this.price = price;
 	}
 
-	public CarVo(Integer seriesId, String name, Integer year, Integer price) {
+	public CarVo() {
+		super();
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public CarVo(Integer seriesId, Integer id, String name, Integer year, Integer price) {
 		super();
 		this.seriesId = seriesId;
+		this.id = id;
 		this.name = name;
 		this.year = year;
 		this.price = price;
-	}
-
-	public CarVo() {
-		super();
 	}
 
 }

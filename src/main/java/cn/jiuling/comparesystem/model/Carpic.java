@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 /**
  * Carpic entity. @author MyEclipse Persistence Tools
  */
@@ -42,6 +44,7 @@ public class Carpic implements java.io.Serializable {
 	}
 
 	// Property accessors
+	@JsonIgnore
 	@Id
 	@Column(name = "id", unique = true, nullable = false)
 	public Integer getId() {
@@ -52,6 +55,7 @@ public class Carpic implements java.io.Serializable {
 		this.id = id;
 	}
 
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "typeId")
 	public Car getCar() {

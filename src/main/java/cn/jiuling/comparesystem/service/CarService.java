@@ -12,4 +12,6 @@ public interface CarService {
 	public String findCarData();
 
 	public Pager findCarType(CarQuery c, Integer page, Integer size);
+
+	public List findPic(Integer carTypeId);
 }

@@ -37,10 +37,17 @@ public class CarController extends BaseController {
 	@RequestMapping("query.action")
 	@ResponseBody
 	public Pager query(CarQuery c,
-			@RequestParam(defaultValue="1") Integer page,
-			@RequestParam(defaultValue="10")Integer size) {
+			@RequestParam(defaultValue = "1") Integer page,
+			@RequestParam(defaultValue = "10") Integer size) {
 		Pager p = carService.findCarType(c, page, size);
 		return p;
+	}
+
+	@RequestMapping("showPic.action")
+	@ResponseBody
+	public List showPic(Integer carTypeId) {
+		List list = carService.findPic(carTypeId);
+		return list;
 	}
 
 }

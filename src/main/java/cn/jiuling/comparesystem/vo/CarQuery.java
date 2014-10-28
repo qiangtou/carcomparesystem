@@ -9,6 +9,10 @@ public class CarQuery {
 	private Short openType;
 	private Short[] level;
 
+	private Integer brandId;
+	private Integer seriesId;
+	private Integer carTypeId;
+
 	public Short getStructure() {
 		return structure;
 	}
@@ -55,6 +59,30 @@ public class CarQuery {
 		builder.append("CarQuery [level=").append(Arrays.toString(level)).append(", openType=").append(openType).append(", seatNum=").append(seatNum).append(
 				", sideDoorNum=").append(sideDoorNum).append(", structure=").append(structure).append("]");
 		return builder.toString();
+	}
+
+	public Integer getBrandId() {
+		return brandId;
+	}
+
+	public void setBrandId(Integer brandId) {
+		this.brandId = brandId;
+	}
+
+	public Integer getSeriesId() {
+		return seriesId;
+	}
+
+	public void setSeriesId(Integer seriesId) {
+		this.seriesId = seriesId;
+	}
+
+	public Integer getCarTypeId() {
+		return carTypeId;
+	}
+
+	public void setCarTypeId(Integer carTypeId) {
+		this.carTypeId = carTypeId;
 	}
 
 }
