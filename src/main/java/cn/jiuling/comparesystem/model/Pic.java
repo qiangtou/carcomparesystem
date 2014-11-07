@@ -3,6 +3,7 @@ package cn.jiuling.comparesystem.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -40,6 +41,7 @@ public class Pic implements java.io.Serializable {
 
 	// Property accessors
 	@Id
+	@GeneratedValue
 	@Column(name = "id", unique = true, nullable = false)
 	public Integer getId() {
 		return this.id;
@@ -59,7 +61,7 @@ public class Pic implements java.io.Serializable {
 		this.video = video;
 	}
 
-	@Column(name = "name", nullable = false, length = 20)
+	@Column(name = "name", nullable = false, length = 22)
 	public String getName() {
 		return this.name;
 	}

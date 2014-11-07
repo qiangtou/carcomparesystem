@@ -10,6 +10,7 @@
 		<spring.version>3.2.5.RELEASE</spring.version>
 		<hibernate.version>3.5.0-Final</hibernate.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<server.port>8080</server.port>
 	</properties>
 	<dependencies>
 		<!--junit测试支持 -->
@@ -135,6 +136,12 @@
 			<artifactId>jackson-mapper-asl</artifactId>
 			<version>1.9.10</version>
 		</dependency>
+		<!-- html选择器 -->
+		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>1.8.1</version>
+		</dependency>
 		<!--jsp标签库 -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -192,6 +199,7 @@
 				<db.name>carcomparesystem</db.name>
 				<log4j.rootLogger>info,myconsole</log4j.rootLogger>
 				<hbm2ddl.auto>none</hbm2ddl.auto>
+				<server.port>8082</server.port>
 			</properties>
 		</profile>
 		<profile>
@@ -200,10 +208,11 @@
 				<db.url>localhost\:3306</db.url>
 				<db.user>root</db.user>
 				<db.pw>Ast4HS</db.pw>
-				<db.name>ccs</db.name>
+				<db.name>carcomparesystem</db.name>
 				<log4j.rootLogger>info,myconsole,myfile</log4j.rootLogger>
 				<hbm2ddl.auto>update</hbm2ddl.auto>
 				<serverIp>192.168.1.8</serverIp>
+				<server.port>8080</server.port>
 			</properties>
 		</profile>
 		<profile>
@@ -250,7 +259,7 @@
 					<webDefaultXml>src/main/resources/webdefault.xml</webDefaultXml>
 					<connectors>
 						<connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
-							<port>8080</port>
+							<port>${server.port}</port>
 							<maxIdleTime>60000</maxIdleTime>
 						</connector>
 					</connectors>
@@ -268,7 +277,7 @@
 				<artifactId>tomcat6-maven-plugin</artifactId>
 				<version>2.2</version>
 				<configuration>
-					<port>8080</port>
+					<port>${server.port}</port>
 					<path>/</path>
 				</configuration>
 			</plugin>

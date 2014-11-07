@@ -8,4 +8,5 @@ public interface VideoService {
 	public void save(Video v);
 	public void update(Video v);
 	public void delete(Integer [] ids);
+	public Video findById(Integer id);
 }

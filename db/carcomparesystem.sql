@@ -1,7 +1,7 @@
 /*==============================================================*/
 /* Database name:  carcomparesystem                             */
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2014/10/25 星期六 18:11:34                      */
+/* Created on:     2014/11/5 星期三 16:17:07                       */
 /*==============================================================*/
 
 
@@ -48,6 +48,8 @@ create table car
    price                int comment '价格',
    year                 int comment '上市年份',
    extendProperty       varchar(500) comment '上市日期、价位、排量、长度(mm)、宽度(mm)、高度(mm)、轴距(mm)、前轮距(mm)、后轮距(mm)、车门数、整备质量(kg)',
+   autohomeId           int comment '汽车之家Id',
+   autohomeSeriesId     int comment '汽车之家系列Id',
    primary key (id)
 )
 ENGINE = InnoDB
@@ -80,7 +82,7 @@ create table pic
 (
    id                   int not null auto_increment,
    videoId              int not null,
-   name                 varchar(20) not null comment '名称',
+   name                 varchar(22) not null comment '名称',
    url                  longblob not null comment '地址',
    isShow               tinyint not null comment '0:不显示,1:显示',
    primary key (id)
@@ -122,8 +124,11 @@ create index Index_1 on series
 create table user
 (
    id                   int not null auto_increment,
-   loginName            varchar(1) not null comment '登录名',
-   name                 varchar(1),
+   loginName            varchar(20) not null comment '登录名',
+   pwd                  varchar(20),
+   name                 varchar(20),
+   userType             tinyint comment '用户类型.1普通用户;2管理员,3数据管理员',
+   status               tinyint comment '用户状态;1启用,2停用',
    primary key (id)
 )
 ENGINE = InnoDB
@@ -146,7 +151,7 @@ create index Index_1 on user
 create table video
 (
    id                   int not null auto_increment,
-   name                 varchar(1) not null comment '名称',
+   name                 varchar(20) not null comment '名称',
    url                  varchar(100),
    primary key (id)
 )

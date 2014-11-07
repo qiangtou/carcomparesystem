@@ -9,3 +9,5 @@ logs
 **/*.swp
 **/*.logs
 **/*.log
+.mymetadata
+src/main/webapp/res/*.*

@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import cn.jiuling.comparesystem.dao.CarDao;
 import cn.jiuling.comparesystem.dao.CarpicDao;
 import cn.jiuling.comparesystem.dao.SeriesDao;
+import cn.jiuling.comparesystem.model.Car;
 import cn.jiuling.comparesystem.service.CarService;
 import cn.jiuling.comparesystem.vo.BrandVo;
 import cn.jiuling.comparesystem.vo.CarQuery;
@@ -78,5 +79,11 @@ public class CarServiceImpl implements CarService {
 	@Override
 	public List findPic(Integer carTypeId) {
 		return carpicDao.findPic(carTypeId);
+	}
+
+	@Override
+	public Car add(Car c) {
+		carDao.save(c);
+		return c;
 	}
 }

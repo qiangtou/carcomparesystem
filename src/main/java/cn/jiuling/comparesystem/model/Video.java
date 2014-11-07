@@ -1,7 +1,7 @@
 package cn.jiuling.comparesystem.model;
 
-import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,7 +22,7 @@ public class Video implements java.io.Serializable {
 	private Integer id;
 	private String name;
 	private String url;
-	private Set<Pic> pics = new HashSet<Pic>(0);
+	private Set<Pic> pics;
 
 	// Constructors
 
@@ -55,7 +55,7 @@ public class Video implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@Column(name = "name", nullable = false, length = 1)
+	@Column(name = "name", nullable = false, length = 20)
 	public String getName() {
 		return this.name;
 	}

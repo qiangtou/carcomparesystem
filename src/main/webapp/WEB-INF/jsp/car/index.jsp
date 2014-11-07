@@ -1,129 +1,250 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf8"%>
 <script src='/js/lib/avalon.js'></script>
-<script src='/js/lib/jquery.min.js'></script>
 <style>
-	table {
-  border-collapse: separate;
-  border-spacing: 0 5px;
-  width:600px;
-}
+	.cartype table {
+	border-collapse: separate;
+	border-spacing: 0 5px;
+	width:80%;
+	}
 
-thead th {
-  background-color: gray;
-  color: white;
-}
+	.cartype thead th {
+	background-color: gray;
+	color: white;
+	}
 
-tbody td {
-  background-color: #EEEEEE;
-}
+	.cartype tbody td {
+	background-color: #EEEEEE;
+	}
 
-tr td:first-child,
-tr th:first-child {
-  border-top-left-radius: 6px;
-  border-bottom-left-radius: 6px;
-}
+	.cartype tr td:first-child,
+	.cartype tr th:first-child {
+	border-top-left-radius: 6px;
+	border-bottom-left-radius: 6px;
+	}
 
-tr td:last-child,
-tr th:last-child {
-  border-top-right-radius: 6px;
-  border-bottom-right-radius: 6px;
-}
+	.cartype tr td:last-child,
+	.cartype tr th:last-child {
+	border-top-right-radius: 6px;
+	border-bottom-right-radius: 6px;
+	}
 </style>
-<div ms-controller='carquery'>
-	<div>
-		<select ms-duplex='brandId'><option ms-repeat='brands' ms-value="{{el.id}}">{{el.sName}} {{el.name}}</option></select>
-		<select ms-duplex='seriesId'><option ms-repeat='series' ms-value="{{el.id}}">{{el.name}}</option></select>
-		<select ms-duplex='carTypeId'><option ms-repeat='carTypes' ms-value="{{el.id}}">{{el.year}} {{el.name}}</option></select>
-	</div>
-	<div>
-		<form id='qq' action="/car/query.action" method="post">
-			级别:
-			<label ms-repeat='levels' ><input type="checkbox" name="level" ms-value="{{$key}}">{{$val}}</label>
-			<br>
-			结构:<select name='structure'>
-				<option value="0">请选择.</option>
-				<option ms-repeat='structures' ms-value="{{$key}}">{{$val}}</option>
-			</select>
-			座位数:
-			<select name=seatNum>
-				<option value="0">请选择.</option>
-				<option ms-value="{{el}}" ms-repeat='seatNumbers'>{{el}}</option>
-			</select>
-			单侧门数量:<select name='sideDoorNum'>
-				<option value="0">请选择.</option>
-				<option ms-value="{{el}}" ms-repeat='sideDoorNumbers'>{{el}}</option>
-			</select>
-			开门方式:<select name="openType">
-				<option value="0">请选择.</option>
-				<option ms-repeat='openTypes' ms-value="{{$key}}">{{$val}}</option>
-			</select>
+<div class='cartype easyui-layout' fit=true >
+	<div data-options="region:'north',title:'车型查询',height:210" >
+		<div ms-controller='carquery'>
 			<div>
-				<input type="button" value="查询" ms-click='submit(1)'>
+				<select ms-duplex='brandId'><option ms-repeat='brands' ms-value="{{el.id}}">{{el.sName}} {{el.name}}</option></select>
+				<select ms-duplex='seriesId'><option ms-repeat='series' ms-value="{{el.id}}">{{el.name}}</option></select>
+				<select ms-duplex='carTypeId'><option ms-repeat='carTypes' ms-value="{{el.id}}">{{el.year}} {{el.name}}</option></select>
+				<form id='qq' action="/car/query.action" method="post">
+					级别:
+					<label ms-repeat='levels' ><input type="checkbox" name="level" ms-value="{{$key}}">{{$val}}</label>
+					<div>
+						结构:<select name='structure'>
+							<option value="0">.</option>
+							<option ms-repeat='structures' ms-value="{{$key}}">{{$val}}</option>
+						</select>
+						座位数:
+						<select name=seatNum>
+							<option value="0">.</option>
+							<option ms-value="{{el}}" ms-repeat='seatNumbers'>{{el}}</option>
+						</select>
+						单侧门数量:<select name='sideDoorNum'>
+							<option value="0">.</option>
+							<option ms-value="{{el}}" ms-repeat='sideDoorNumbers'>{{el}}</option>
+						</select>
+						开门方式:<select name="openType">
+							<option value="0">.</option>
+							<option ms-repeat='openTypes' ms-value="{{$key}}">{{$val}}</option>
+						</select>
+					</div>
+					<div>
+						车头:
+						前大灯:<select name="headLight"><option value=""></option></select>
+						前雾灯:<select name="frontFogLight"><option value=""></option></select>
+						散热格栅:<select name="grille"><option value=""></option></select>
+						前保险杠:<select name="bumper"><option value=""></option></select>
+						车外后视镜:<select name="mirror"><option value=""></option></select>
+					</div>
+					<div>
+						车侧:
+						侧面顶端线:<select name="sideTopLine"><option value=""></option></select>
+						腰线数量:<select name="waistLineNum">
+							<option value="0"></option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+						</select>
+						上腰线位置:<select name="upWaistLinePos">
+							<option value="0"></option>
+							<option value="1">把手上方</option>
+							<option value="2">穿过把手</option>
+							<option value="3">把手下方</option>
+						</select>
+						上腰线线型:<select name="upWaistLineType">
+							<option value="0"></option>
+							<option value="1">不明显</option>
+							<option value="2">前低后高</option>
+							<option value="3">前高后低</option>
+							<option value="4">中间凸起</option>
+							<option value="5">中间凹陷</option>
+							<option value="6">平行</option>
+						</select>
+						上腰线造型:<select name="upWaistLineModel">
+							<option value="0"></option>
+							<option value="1">不明显</option>
+							<option value="2">凹槽</option>
+							<option value="3">棱线</option>
+							<option value="4">凹凸线</option>
+
+						</select>
+						下腰线造型:<select name="downWaistLineModel">
+							<option value="0"></option>
+							<option value="1">凹槽</option>
+							<option value="2">棱线</option>
+							<option value="3">凸条</option>
+							<option value="4">凹凸线</option>
+						</select>
+						<br>
+						底部流线造型:
+						<select name="bottomLineModel">
+							<option value="0"></option>
+							<option value="1">不明显</option>
+							<option value="2">凹槽</option>
+							<option value="3">棱线</option>
+							<option value="4">凸条</option>
+							<option value="5">凹凸线</option>
+						</select>
+						底部流线位置:
+						<select name="bottomLinePos">
+							<option value="0"></option>
+							<option value="1">车门</option>
+							<option value="2">底盘</option>
+						</select>
+						前门大窗:
+						<select name="frontDoorBigWin">
+							<option value="0"></option>
+						</select>
+						前门小窗:
+						<select name="frontDoorSmallWin">
+							<option value="0"></option>
+						</select>
+						后门大窗:
+						<select name="backDoorBigWin">
+							<option value="0"></option>
+						</select>
+						后门小窗:
+						<select name="backDoorSmallWin">
+							<option value="0"></option>
+						</select>
+						后座小窗:
+						<select name="backSeatSmallWin">
+							<option value="0"></option>
+						</select>
+					</div>
+					<div>
+						车尾:
+						后尾灯:<select name="rearLight">
+							<option value="0"></option>
+						</select>
+						后保险杠:<select name="rearBumper">
+							<option value="0"></option>
+						</select>
+						高位刹车灯:<select name="highMountStopLamp">
+							<option value="0"></option>
+						</select>
+					</div>
+					<div>
+						颜色: <select name="color">
+							<option value="0"></option>
+							<option value="1">黑</option>
+						</select>
+						方位:
+						<select name="position">
+							<option value="0"></option>
+							<option value="1">车头</option>
+							<option value="2">车尾</option>
+							<option value="3">车侧</option>
+							<option value="4">车顶</option>
+						</select>
+					</div>
+				</form>
 			</div>
-		</form>
-	</div>
-</div>
-<div ms-controller="carTypeContent">
-	<div ms-visible='showTable'>
-		<table>
-			<thead>
-				<tr>
-					<th>品牌</th> <th>车系</th> <th>结构</th> <th>级别</th> <th>座位数</th> <th>款型</th>
-				</tr>
-			</thead>
-			<tr ms-repeat='cars' ms-click="showPic(el)">
-				<td>{{el.brandName}}</td>
-				<td>{{el.seriesName}}</td>
-				<td>{{el.structure}}</td>
-				<td>{{el.level}}</td>
-				<td>{{el.seatNum}}</td>
-				<td>{{el.year}} {{el.name}}</td>
-			</tr>
-		</table>
-		<div ms-visible='cars.length'>
-			<a href="#" ms-visible='page!=1' ms-click='goPage("first")'>首页</a>
-			<a href="#" ms-visible='page>1' ms-click='goPage("prev")'>上一页</a>
-			{{page}} 
-			<a href="#" ms-visible='page<last' ms-click='goPage("next")'>下一页</a>
-			<a href="#" ms-visible='page!=last' ms-click='goPage("last")'>尾页({{last}})</a>
+			<div>
+				<input type="button" class="easyui-linkbutton" value="查询" ms-click='submit(1)'>
+			</div>
 		</div>
 	</div>
-	<div ms-visible='!showTable' height='300px'>
-		<!--品牌、系列、车型、轿车级别、座位数、单侧门数量、开门方式-->
-		<div style='float:left'>
-		品牌:{{car.brandName}}
-		<br>系列:{{car.seriesName}}
-		<br>车型:{{car.year}} {{car.name}}
-		<br>轿车级别:{{car.level}}
-		<br>座位数:{{car.seatNum}}
-		<br>单侧门数量:{{car.sideDoorNum}}
-		<br>开门方式:{{car.openType}}
-		<br>车门数:{{car.sideDoorNum}}
-		<br>价格:{{car.price}}元
-		</div>
-		<!--上市日期、价位、排量、长度(mm)、宽度(mm)、高度(mm)、轴距(mm)、前轮距(mm)、后轮距(mm)、车门数、整备质量(kg)-->
-		<div>
-		上市日期:{{car.date}}
-		<br>排量:{{car.pailiang}}
-		<br>长度(mm):{{car.long}}
-		<br>宽度(mm):{{car.width}}
-		<br>高度(mm):{{car.height}}
-		<br>轴距(mm):{{car.zhouju}}
-		<br>前轮距(mm):{{car.qianlunju}}
-		<br>后轮距(mm):{{car.houlunju}}
-		<br>整备质量(kg):{{car.weight}}
-		</div>
-		<div>
-			<a href="#" ms-click='goCar(car,-1)'>上一款</a>
-			<a href="#" ms-click='goCar(car,+1)'>下一款</a>
-			<a href="#" ms-click='returnTable'>返回表格</a>
+
+	<div data-options="region:'center',title:'车型列表'" >
+		<div ms-controller="carTypeContent">
+			<div ms-visible='showTable'>
+				<table>
+					<thead>
+						<tr>
+							<th>品牌</th><th>车系</th><th>结构</th><th>级别</th><th>座位数</th><th>款型</th>
+						</tr>
+					</thead>
+					<tr ms-repeat='cars' ms-click="showPic(el)">
+						<td>{{el.brandName}}</td>
+						<td>{{el.seriesName}}</td>
+						<td>{{el.structure}}</td>
+						<td>{{el.level}}</td>
+						<td>{{el.seatNum}}</td>
+						<td>{{el.year}} {{el.name}}</td>
+					</tr>
+				</table>
+				<div ms-visible='cars.length'>
+					<a href="#" ms-visible='page!=1' ms-click='goPage("first")'>首页</a>
+					<a href="#" ms-visible='page>1' ms-click='goPage("prev")'>上一页</a>
+					{{page}} 
+					<a href="#" ms-visible='page<last' ms-click='goPage("next")'>下一页</a>
+					<a href="#" ms-visible='page!=last' ms-click='goPage("last")'>尾页({{last}})</a>
+				</div>
+			</div>
+			<div ms-visible='!showTable' >
+				<table>
+					<tr>
+						<td>品牌:{{car.brandName}}</td><td>上市日期:{{car.date}}</td>
+					</tr>
+					<tr>
+						<td>系列:{{car.seriesName}}</td><td>排量:{{car.displacement}}</td>
+					</tr>
+					<tr>
+						<td>车型:{{car.year}} {{car.name}}</td><td>长度(mm):{{car.long}}</td>
+					</tr>
+					<tr>
+						<td>轿车级别:{{car.level}}</td><td>宽度(mm):{{car.width}}</td>
+					</tr>
+					<tr>
+						<td>座位数:{{car.seatNum}}</td><td>高度(mm):{{car.height}}</td>
+					</tr>
+					<tr>
+						<td>单侧门数量:{{car.sideDoorNum}}</td><td>轴距(mm):{{car.wheelbase}}</td>
+					</tr>
+					<tr>
+						<td>开门方式:{{car.openType}}</td><td>前轮距(mm):{{car.trackfront}}</td>
+					</tr>
+					<tr>
+						<td>单侧车门数:{{car.sideDoorNum}}</td><td>后轮距(mm):{{car.trackrear}}</td>
+					</tr>
+					<tr>
+						<td>价格:{{car.price}}元</td><td>整备质量(kg):{{car.weight}}</td>
+					</tr>
+				</table>
+				<div>
+					<a href="#" ms-click='goCar(car,-1)'>上一款</a>
+					<a href="#" ms-click='goCar(car,+1)'>下一款</a>
+					<a href="#" ms-click='returnTable'>返回列表</a>
+				</div>
+			</div>
 		</div>
 	</div>
-	<div>
-		<div>
-			<a href="#" ms-repeat='pics' ms-click='display(el)'>{{el.color}} </a>
+	<div data-options="region:'south',title:'图片',height:270" >
+		<div ms-controller="picture">
+			<div>
+				<a href="#" ms-repeat='pics' ms-click='display(el)'>{{el.color}} </a>
+			</div>
+			<img ms-src="{{url}}" ms-visible='url!=""' width='400px' height='300px'>
 		</div>
-		<img ms-src="{{url}}" ms-visible='url!=""' width='400px' height='300px'>
 	</div>
 </div>
 <script>
@@ -242,7 +363,6 @@ tr th:last-child {
 			vm.size=10;
 			vm.last=0;
 			vm.cars=[];
-			vm.pics=[];
 			vm.url='';
 			vm.showTable=true;
 			vm.car={}
@@ -270,8 +390,8 @@ tr th:last-child {
 						data.forEach(function(o){
 							o.color=vm.$colors[o.color]
 						});
-						vm.pics=data;
-						vm.display(data[0]);
+						pic.pics=data;
+						pic.display(data[0]);
 					}
 				});
 			}
@@ -290,10 +410,6 @@ tr th:last-child {
 				if(index>=0 && index<vm.cars.length) vm.showPic(vm.cars[index])
 			}
 
-			//加载图片url
-			vm.display=function(o){
-				vm.url=o&&o.picUrl||"";
-			}
 
 			//表格下面的翻页
 			vm.goPage=function(page){
@@ -323,6 +439,14 @@ tr th:last-child {
 				});
 				vm.cars=list;
 			};
+		});
+		var pic=avalon.define("picture",function(vm){
+			vm.url="";
+			vm.pics=[];
+			//加载图片url
+			vm.display=function(o){
+				vm.url=o&&o.picUrl||"";
+			}
 		});
 	})(jQuery,avalon);
 </script>
